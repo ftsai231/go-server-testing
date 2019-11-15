@@ -41,6 +41,8 @@ func main() {
 			s2 := service.NewBatteryService()
 			d.AddService(s2)
 
+			
+
 			// Advertise device name and service's UUIDs.
 			d.AdvertiseNameAndServices("Gopher", []gatt.UUID{s1.UUID(), s2.UUID()})
 
