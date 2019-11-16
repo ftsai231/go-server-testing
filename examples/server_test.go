@@ -1,14 +1,12 @@
-// +build
-
 package main
 
 import (
 	"fmt"
 	"log"
 
-	"github.com/paypal/go-server-testing"
-	"github.com/paypal/go-server-testing/examples/option"
-	"github.com/paypal/go-server-testing/examples/service"
+	"github.com/paypal/gatt"
+	"github.com/paypal/gatt/examples/option"
+	"github.com/paypal/gatt/examples/service"
 )
 
 func main() {
@@ -30,21 +28,13 @@ func main() {
 		case gatt.StatePoweredOn:
 			// Setup GAP and GATT services for Linux implementation.
 			// OS X doesn't export the access of these services.
-			d.AddService(service.NewGapService("Gopher")) // no effect on OS X
-			d.AddService(service.NewGattService())        // no effect on OS X
 
 			// A simple count service for demo.
-			s1 := service.NewCountService()
+			s1 := service.
 			d.AddService(s1)
 
-			// A fake battery service for demo.
-			s2 := service.NewBatteryService()
-			d.AddService(s2)
-
-			
-
 			// Advertise device name and service's UUIDs.
-			d.AdvertiseNameAndServices("Gopher", []gatt.UUID{s1.UUID(), s2.UUID()})
+			d.AdvertiseNameAndServices("Fred's project", []gatt.UUID{s1.UUID()})
 
 			// Advertise as an OpenBeacon iBeacon
 			d.AdvertiseIBeacon(gatt.MustParseUUID("AA6062F098CA42118EC4193EB73CCEB6"), 1, 2, -59)
@@ -56,3 +46,4 @@ func main() {
 	d.Init(onStateChanged)
 	select {}
 }
+
