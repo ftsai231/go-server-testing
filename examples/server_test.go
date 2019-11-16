@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/paypal/gatt"
-	"github.com/paypal/gatt/examples/option"
-	"github.com/paypal/gatt/examples/service"
+	"github.com/paypal/go-server-testing"
+	"github.com/paypal/go-server-testing/examples/option"
+	"github.com/paypal/go-server-testing/examples/service"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 			// OS X doesn't export the access of these services.
 
 			// A simple count service for demo.
-			s1 := service.
+			s1 := service.NewTestService()
 			d.AddService(s1)
 
 			// Advertise device name and service's UUIDs.
