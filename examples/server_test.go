@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/paypal/go-server-testing"
-	"github.com/paypal/go-server-testing/examples/option"
-	"github.com/paypal/go-server-testing/examples/service"
+	"github.com/paypal/gatt"
+	"github.com/paypal/gatt/examples/option"
+	"github.com/paypal/gatt/examples/service"
 )
 
 func main() {
