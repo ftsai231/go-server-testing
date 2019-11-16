@@ -6,7 +6,7 @@ import (
 	//"log"
 	//"time"
 
-	"github.com/paypal/go-server-testing"
+	"github.com/paypal/gatt"
 )
 
 func NewTestService() *gatt.Service {
