@@ -32,8 +32,15 @@ func main() {
 			// OS X doesn't export the access of these services.
 
 			// A simple count service for demo.
-			s1 := service.NewTestService()
+			var s1 = service.NewTestService()
 			d.AddService(s1)
+
+			n := 0
+			s1.AddCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51c")).HandleReadFunc(
+				func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
+					fmt.Fprintf(rsp, "count: %d", n)
+					n++
+				})
 
 			// Advertise device name and service's UUIDs.
 			d.AdvertiseNameAndServices("Fred's project", []gatt.UUID{s1.UUID()})
