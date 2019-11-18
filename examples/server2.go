@@ -36,8 +36,6 @@ func main() {
 
 			d.AddService(s1)
 
-
-
 			// Advertise device name and service's UUIDs.
 			d.AdvertiseNameAndServices("Fred's project", []gatt.UUID{s1.UUID()})
 
