@@ -3,8 +3,7 @@ package service
 
 import (
 	"fmt"
-	//"log"
-	//"time"
+
 
 	"github.com/paypal/gatt"
 )
@@ -18,21 +17,6 @@ func NewTestService() *gatt.Service {
 			n++
 		})
 
-	//s.AddCharacteristic(gatt.MustParseUUID("16fe0d80-c111-11e3-b8c8-0002a5d5c51b")).HandleWriteFunc(
-	//	func(r gatt.Request, data []byte) (status byte) {
-	//		log.Println("Wrote:", string(data))
-	//		return gatt.StatusSuccess
-	//	})
-	//
-	//s.AddCharacteristic(gatt.MustParseUUID("1c927b50-c116-11e3-8a33-0800200c9a66")).HandleNotifyFunc(
-	//	func(r gatt.Request, n gatt.Notifier) {
-	//		cnt := 0
-	//		for !n.Done() {
-	//			fmt.Fprintf(n, "Count: %d", cnt)
-	//			cnt++
-	//			time.Sleep(time.Second)
-	//		}
-	//	})
 
 	return s
 }
