@@ -33,10 +33,8 @@ func main() {
 
 			// A simple count service for demo.
 			var s1 = service.NewTestService()
+
 			d.AddService(s1)
-
-			fmt.Printf(s1.Name())
-
 
 
 

@@ -14,6 +14,8 @@ func NewTestService() *gatt.Service {
 	s.AddCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51c")).HandleReadFunc(
 		func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
 			fmt.Fprintf(rsp, "count: %d", n)
+			fmt.Printf( "count: %d", n)
+			
 			n++
 		})
 
