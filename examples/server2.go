@@ -47,6 +47,6 @@ func main() {
 	}
 
 	d.Init(onStateChanged)
-	//select {}
+	select {}
 }
 
