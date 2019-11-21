@@ -79,7 +79,7 @@ func main() {
 			bdaddr(d)
 
 			// Setup GAP and GATT services.
-			d.AddService(service.NewGapService("ServiceTesting"))
+			d.AddService(service.NewGapService(*name))
 			d.AddService(service.NewGattService())
 
 			// Add a simple counter service.

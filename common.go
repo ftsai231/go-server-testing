@@ -314,6 +314,8 @@ type Descriptor struct {
 	props  Property // enabled properties
 	secure Property // security enabled properties
 
+	name string   //added
+
 	h     uint16
 	value []byte
 
