@@ -68,7 +68,6 @@ func (p Property) String() (result string) {
 type Service struct {
 	uuid  UUID
 	chars []*Characteristic
-
 	h    uint16
 	endh uint16
 }
