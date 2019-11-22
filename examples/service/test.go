@@ -17,14 +17,13 @@ func NewTestService() *gatt.Service {
 		})
 
 	c := gatt.NewCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA"), s, 0x01 | 0x02, 0, 0)
-	d := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 0,  c)
+	d := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 2901,  c)
 	d.SetValue([]byte("Hello World"))
 	c.AddDescriptor(d.UUID())
 
 	s.AddCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA")).HandleReadFunc(
 		func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
 			fmt.Println( "(Println) Characteristic Name: " + c.Name())
-			fmt.Println(c.Descriptor().Characteristic())
 			fmt.Println("value byte array: ", []byte("Hello World"))
 		})
 
