@@ -18,21 +18,21 @@ func NewTestService() *gatt.Service {
 			n++
 		})
 
-	c := gatt.NewCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51d"), s, 0x01 | 0x02 | 0x08, 0, 0)
-	d := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 0,  c)
-	d.SetValue([]byte("Hello World"))
-
-
-
-	c.AddDescriptor(gatt.UUID16(0x2904)).SetValue([]byte{4, 1, 39, 173, 1, 0, 0})
-
-
-	s.AddCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51d")).HandleReadFunc(
-		func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
-			fmt.Fprintf(rsp, str)
-			fmt.Println(str)
-
-		})
+	//c := gatt.NewCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51d"), s, 0x01 | 0x02 | 0x08, 0, 0)
+	//d := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 0,  c)
+	//d.SetValue([]byte("Hello World"))
+	//
+	//
+	//
+	//c.AddDescriptor(gatt.UUID16(0x2904)).SetValue([]byte{4, 1, 39, 173, 1, 0, 0})
+	//
+	//
+	//s.AddCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51d")).HandleReadFunc(
+	//	func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
+	//		fmt.Fprintf(rsp, str)
+	//		fmt.Println(str)
+	//
+	//	})
 
 	return s
 }
