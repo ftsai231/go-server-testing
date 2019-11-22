@@ -51,15 +51,16 @@ func main() {
 
 
 
+
 			s.AddCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA")).HandleReadFunc(
 				func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
 					fmt.Println( "(Println) Characteristic Name: " + c.Name())
 					fmt.Println("Descriptor UUID:" + dd.UUID().String())
+					fmt.Println("Descriptor Name: " + dd.Name())
 					fmt.Println("value byte array: ", []byte("Hello World"))
 				})
 
 			d.AddService(s)
-
 
 			// Advertise device name and service's UUIDs.
 			d.AdvertiseNameAndServices("Fred's project", []gatt.UUID{s.UUID()})
