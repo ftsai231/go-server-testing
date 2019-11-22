@@ -16,7 +16,7 @@ func NewTestService() *gatt.Service {
 		})
 
 	c := gatt.NewCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA"), s, 0x01 | 0x02, 0, 0)
-	d := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 2901,  c)
+	d := gatt.NewDescriptor(gatt.MustParseUUID("0x2901"), 2901,  c)
 	d.SetValue([]byte("Hello World"))
 	c.AddDescriptor(d.UUID())
 
