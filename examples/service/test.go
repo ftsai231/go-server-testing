@@ -32,12 +32,14 @@ func NewTestService() *gatt.Service {
 
 	d.SetValue([]byte("Hello"))
 
-	s.AddCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51d")).HandleReadFunc(
-		func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
-			fmt.Fprintf(rsp, str)
-			fmt.Println(str)
+	s.AddCharacteristic(gatt.MustParseUUID("11fac9e0-c111-11e3-9246-0002a5d5c51d"))
 
-		})
+	//.HandleReadFunc(
+	//	func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
+	//		fmt.Fprintf(rsp, str)
+	//		fmt.Println(str)
+	//
+	//	})
 
 
 
