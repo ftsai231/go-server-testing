@@ -20,6 +20,8 @@ func NewTestService() *gatt.Service {
 	d.SetValue([]byte("Hello World"))
 	c.AddDescriptor(d.UUID())
 
+
+
 	s.AddCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA")).HandleReadFunc(
 		func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
 			fmt.Println( "(Println) Characteristic Name: " + c.Name())
