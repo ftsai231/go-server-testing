@@ -35,9 +35,9 @@ func NewTestService() *gatt.Service {
 
 		})
 
-	gatt.NewDescriptor(gatt.MustParseUUID("2901"), 0,  c)
+	d := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 0,  c)
 
-	//d.SetValue()
+	d.SetValue([]byte("Hello"))
 
 	return s
 }

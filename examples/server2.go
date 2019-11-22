@@ -34,6 +34,8 @@ func main() {
 			// A simple count service for demo.
 			var s1 = service.NewTestService()
 
+
+
 			d.AddService(s1)
 
 			// Advertise device name and service's UUIDs.
