@@ -32,9 +32,7 @@ func main() {
 			// OS X doesn't export the access of these services.
 
 			// A simple count service for demo.
-			var s1 = service.NewBatteryService()
-
-
+			var s1 = service.NewTestService()
 
 			d.AddService(s1)
 
