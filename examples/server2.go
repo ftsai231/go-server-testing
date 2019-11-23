@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 
+
 	"github.com/paypal/gatt"
 	"github.com/paypal/gatt/examples/option"
 	//"github.com/paypal/gatt/examples/service"
@@ -46,18 +47,20 @@ func main() {
 
 			c := gatt.NewCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA"), s, 0x01 | 0x02, 0, 0)
 			dd := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 2901,  c)
-			dd.SetValue([]byte("Hello World"))
+
+			dd.SetSignal("Attitude")
+			dd.SetSignalValue(0.45)
+
+
 			c.AddDescriptor(dd.UUID())
-
-
-
 
 			s.AddCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA")).HandleReadFunc(
 				func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
 					fmt.Println( "(Println) Characteristic Name: " + c.Name())
 					fmt.Println("Descriptor UUID:" + dd.UUID().String())
 					fmt.Println("Descriptor Name: " + dd.Name())
-					fmt.Println("value byte array: ", []byte("Hello World"))
+					fmt.Print(dd.GetSignal() + ": ")
+					fmt.Println(dd.GetSignalValue())
 				})
 
 			d.AddService(s)
