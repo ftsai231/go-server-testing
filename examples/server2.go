@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 
-
 	"github.com/paypal/gatt"
 	"github.com/paypal/gatt/examples/option"
 	//"github.com/paypal/gatt/examples/service"
@@ -46,22 +45,31 @@ func main() {
 				})
 
 			c := gatt.NewCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA"), s, 0x01 | 0x02, 0, 0)
-			dd := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 2901,  c)
-
-			dd.SetSignal("Attitude")
-			dd.SetSignalValue(0.45)
-
-
-			c.AddDescriptor(dd.UUID())
+			var dict []string
+			dict[0] = "accLat"
+			dict[1] = "accLong"
 
 			s.AddCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA")).HandleReadFunc(
 				func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
-					fmt.Println( "(Println) Characteristic Name: " + c.Name())
-					fmt.Println("Descriptor UUID:" + dd.UUID().String())
-					fmt.Println("Descriptor Name: " + dd.Name())
-					fmt.Print(dd.GetSignal() + ": ")
-					fmt.Println(dd.GetSignalValue())
+					fmt.Fprintf(rsp, c.Properties().String())
+					fmt.Println( c.Properties().String())
 				})
+
+
+			c.SetValue(Encode(dict))
+
+			//dd := gatt.NewDescriptor(gatt.MustParseUUID("2901"), 2901,  c)
+			//
+			//
+			//c.AddDescriptor(dd.UUID())
+			//
+			//s.AddCharacteristic(gatt.MustParseUUID("5435D20C-7086-484A-B506-9234873070EA")).HandleReadFunc(
+			//	func(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
+			//		fmt.Println( "(Println) Characteristic Name: " + c.Name())
+			//		fmt.Println("Descriptor UUID:" + dd.UUID().String())
+			//		fmt.Println("Descriptor Name: " + dd.Name())
+			//
+			//	})
 
 			d.AddService(s)
 
@@ -79,3 +87,24 @@ func main() {
 	select {}
 }
 
+
+func Decode(b []byte) []string {
+	b, ls := readLen(b)
+	s := make([]string, ls)
+	for i := range s {
+		b, ls = readLen(b)
+		s[i] = string(b[:ls])
+		b = b[ls:]
+	}
+	return s
+}
+
+func Encode(s []string) []byte {
+	var b []byte
+	b = writeLen(b, len(s))
+	for _, ss := range s {
+		b = writeLen(b, len(ss))
+		b = append(b, ss...)
+	}
+	return b
+}

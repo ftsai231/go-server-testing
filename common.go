@@ -316,10 +316,6 @@ type Descriptor struct {
 
 	name string   //added
 
-	signal string   //added
-	signalValue float32      //added
-
-
 	h     uint16
 	value []byte
 
@@ -354,23 +350,6 @@ func (d *Descriptor) UUID() UUID {
 // If the UUID is not assigned, returns an empty string.
 func (d *Descriptor) Name() string {
 	return knownDescriptors[d.uuid.String()].Name
-}
-
-//customzied encapsulation functions
-func (d *Descriptor) SetSignal(sig string){
-	d.signal = sig
-}
-
-func (d *Descriptor) SetSignalValue(sigVal float32){
-	d.signalValue = sigVal
-}
-
-func (d *Descriptor) GetSignal() string{
-	return d.signal
-}
-
-func (d *Descriptor) GetSignalValue() float32{
-	return d.signalValue
 }
 
 // Characteristic returns the containing characteristic of the descriptor.
